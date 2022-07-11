@@ -1,0 +1,30 @@
+{
+  "name": "hc-sr04",
+  "version": "0.0.1",
+  "description": "Raspberry Pi Node.js library for hc-sr04 ultrasonics",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist/ && npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Whitewood-Robotics-Solutions/hc-sr04.git"
+  },
+  "author": "Joey Andres <jandres@joeyandres.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Whitewood-Robotics-Solutions/hc-sr04/issues"
+  },
+  "homepage": "https://github.com/Whitewood-Robotics-Solutions/hc-sr04#readme",
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "onoff": "^6.0.3"
+  }
+}
