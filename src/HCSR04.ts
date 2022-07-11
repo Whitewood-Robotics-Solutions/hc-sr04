@@ -21,17 +21,17 @@ export class HCSR04 {
     let endTimeMs = hrtime.bigint();
 
     while (this.echoPin.readSync() === 0) {
-      startTimeMs = hrtime.bigint() * 1000000n;
+      startTimeMs = hrtime.bigint();
     }
 
     while (this.echoPin.readSync() === 1) {
-      endTimeMs = hrtime.bigint() * 1000000n;
+      endTimeMs = hrtime.bigint();
     }
 
-    const deltaTime = (endTimeMs - startTimeMs) / 1000n;
+    const deltaTime = Number(endTimeMs - startTimeMs) / 1000000000;
 
     // multiply with the sonic speed (34300 cm/s)
     // and divide by 2, because there and back
-    return (Number(deltaTime) * 34300) / 2;
+    return (deltaTime * 34300) / 2;
   }
 }
