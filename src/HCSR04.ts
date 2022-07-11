@@ -1,3 +1,4 @@
+import { hrtime } from 'process';
 import { Gpio, Low } from 'onoff';
 import { sleepSync } from './lib';
 
@@ -13,24 +14,24 @@ export class HCSR04 {
 
   public distance(): number {
     this.triggerPin.writeSync(1);
-    sleepSync(1);
+    sleepSync(1000);
     this.triggerPin.writeSync(0);
 
-    let startTime = Date.now();
-    let endTime = Date.now();
+    let startTimeMs = hrtime.bigint();
+    let endTimeMs = hrtime.bigint() * 1000n;
 
     while (this.echoPin.readSync() === 0) {
-      startTime = Date.now();
+      startTimeMs = hrtime.bigint() * 1000n;
     }
 
     while (this.echoPin.readSync() === 1) {
-      endTime = Date.now();
+      endTimeMs = hrtime.bigint();
     }
 
-    const deltaTime = (endTime - startTime) / 1000.0;
+    const deltaTime = (endTimeMs - startTimeMs) / 1000n;
 
     // multiply with the sonic speed (34300 cm/s)
     // and divide by 2, because there and back
-    return (deltaTime * 34300) / 2;
+    return (Number(deltaTime) * 34300) / 2;
   }
 }
