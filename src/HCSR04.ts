@@ -18,14 +18,14 @@ export class HCSR04 {
     this.triggerPin.writeSync(0);
 
     let startTimeMs = hrtime.bigint();
-    let endTimeMs = hrtime.bigint() * 1000n;
+    let endTimeMs = hrtime.bigint();
 
     while (this.echoPin.readSync() === 0) {
-      startTimeMs = hrtime.bigint() * 1000n;
+      startTimeMs = hrtime.bigint() * 1000000n;
     }
 
     while (this.echoPin.readSync() === 1) {
-      endTimeMs = hrtime.bigint();
+      endTimeMs = hrtime.bigint() * 1000000n;
     }
 
     const deltaTime = (endTimeMs - startTimeMs) / 1000n;
